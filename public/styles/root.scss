@@ -1,0 +1,23 @@
+@import "./vars.scss";
+
+* {
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+    transform: none;
+    box-sizing: border-box;
+    color: $textColorPrimary;
+}
+
+html {
+    font-family: $defaultFontFamily, sans-serif;
+    font-size: $defaultFontSize;
+    font-weight: $defaultFontWeight;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: $backgroundColorPrimary;
+}
