@@ -86,7 +86,7 @@ const Home: NextPage = () => {
                     },
                 }
             );
-            // if (!req.ok) throw new Error("Unable fetch! (req was not OK)");
+            if (!req.ok) throw new Error("Unable fetch! (req was not OK)");
 
             let x: object = await req.json();
             setDemographicData({ error: false, ...x });
@@ -132,7 +132,8 @@ const Home: NextPage = () => {
                     Reset Session Cookie
                 </Button>
                 <main>
-                    {JSON.stringify(demographicData) !== "{}" ? (
+                    {JSON.stringify(demographicData) !== "{}" &&
+                    demographicData?.["error"] === false ? (
                         <>
                             <p>{JSON.stringify(demographicData)}</p>
                             <h1>
@@ -189,8 +190,13 @@ const Home: NextPage = () => {
                                 />
                             </div>
                         </>
+                    ) : JSON.stringify(demographicData) === "{}" ? (
+                        <p>Still fetching data...</p>
                     ) : (
-                        <p>Data is still loading....</p>
+                        <p>
+                            Error while fetching data (did you check your
+                            sesison id?)...
+                        </p>
                     )}
                 </main>
             </div>
