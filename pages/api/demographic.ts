@@ -1,9 +1,11 @@
+// packages
 import type { NextApiRequest, NextApiResponse } from "next";
-import { FetchResponse } from "../../index";
-import { checkValidRequest, defaultHeaders } from "./_constants";
-
 import fetch from "node-fetch";
 import { load as cheerioLoad } from "cheerio";
+
+// libraries
+import { FetchResponse } from "../../index";
+import { checkValidRequest, defaultHeaders } from "./_constants";
 
 const endroute: string =
     "https://studentconnect.bloomfield.org/studentportal/Home/LoadProfileData/Demographics";

@@ -1,3 +1,46 @@
+@import "../vars.scss";
+
 .root {
     padding: 3%;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+}
+
+.card-grid-item {
+    position: relative;
+    display: inline-flex;
+    margin: 1vmin;
+    padding: 1vmin;
+    width: auto;
+    min-height: 5vmin;
+    background-color: $backgroundColorSecondary;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+
+    span {
+        display: flex;
+        margin-bottom: 0.75em;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        * {
+            margin-inline: 0.5em;
+        }
+
+        svg {
+            transform: scale(1.75);
+        }
+
+        h5 {
+            font-size: 1.25em;
+        }
+    }
 }
