@@ -34,7 +34,7 @@ export default async function handler(
 
     let $ = cheerioLoad(await (await dataReq).text());
     let tableContent = $(
-        "html > body > table > tbody > tr> td:nth-child(2) > table > tbody"
+        "html > body > table > tbody > tr > td:nth-child(2) > table > tbody"
     ).children();
     let data: any = {};
 
