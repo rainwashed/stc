@@ -1,0 +1,25 @@
+.footer {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 100vh;
+    width: 100vw;
+    height: auto;
+    transform: translatey(100%);
+    background-color: rgba(0, 0, 0, 0.25);
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer section {
+    padding-inline: 5%;
+}
+
+.footer section:first-child {
+    flex: 2;
+}
+
+.footer section:not(.footer section:first-child) {
+    flex: 1;
+}
