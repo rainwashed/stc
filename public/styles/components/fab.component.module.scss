@@ -1,0 +1,56 @@
+$spacingAmount: 0.75em;
+
+.fab {
+    display: grid;
+    position: fixed;
+    left: 95%;
+    top: 95%;
+    width: 5vmin;
+    height: 5vmin;
+    transform: translate(-100%, -100%);
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    place-items: center;
+
+    svg {
+        width: 50%;
+        height: 50%;
+    }
+}
+
+.fabTrack {
+    display: flex;
+    position: absolute;
+    left: -50%;
+    top: 50%;
+    transform: translate(-100%, -50%);
+    transform-origin: center right;
+    flex-flow: row-reverse nowrap;
+    justify-content: inherit;
+    align-items: center;
+}
+
+.fabNavButton {
+    margin-inline: $spacingAmount;
+    width: 3vmin;
+    height: 3vmin;
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(20px);
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    a {
+        display: grid;
+        width: 100%;
+        height: 100%;
+        place-items: center;
+        svg {
+            width: 35%;
+            height: 35%;
+            color: #fff;
+        }
+    }
+}
