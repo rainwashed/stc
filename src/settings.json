@@ -1,0 +1,4 @@
+{
+    "mainRoute": "https://studentconnect.bloomfield.org/studentportal",
+    "loginRoute": "https://studentconnect.bloomfield.org/studentportal/Home/Login"
+}
