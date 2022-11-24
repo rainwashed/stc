@@ -1,6 +1,7 @@
 import { FastifyInstance, FastifyPluginOptions } from "fastify";
 import { apiRouteMiddleware } from "./constants";
 import requestDemographicData from "./demographic.api";
+import requestContactsData from "./contacts.api";
 
 function apiRoute(
     fastify: FastifyInstance,
@@ -16,6 +17,7 @@ function apiRoute(
                 data: {
                     routes: {
                         demographic: "/api/demographic",
+                        contacts: "/api/contacts",
                     },
                 },
             })
@@ -23,10 +25,47 @@ function apiRoute(
     });
 
     fastify.get("/demographic", async (req, res) => {
-        let call = await requestDemographicData(
-            req.headers["sessioncookie"] as string
-        );
-        res.send(call);
+        try {
+            let call = await requestDemographicData(
+                req.headers["sessioncookie"] as string
+            );
+            res.code(200).send(
+                JSON.stringify({
+                    error: false,
+                    data: call,
+                })
+            );
+        } catch (error) {
+            res.code(500).send(
+                JSON.stringify({
+                    error: true,
+                    message: String(error),
+                    reason: "/demographic GET failed.",
+                })
+            );
+        }
+    });
+
+    fastify.get("/contacts", async (req, res) => {
+        try {
+            let call = await requestContactsData(
+                req.headers["sessioncookie"] as string
+            );
+            res.code(200).send(
+                JSON.stringify({
+                    error: false,
+                    data: call,
+                })
+            );
+        } catch (error) {
+            res.code(500).send(
+                JSON.stringify({
+                    error: true,
+                    message: String(error),
+                    reason: "/contacts GET failed.",
+                })
+            );
+        }
     });
 
     done();

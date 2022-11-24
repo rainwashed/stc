@@ -19,6 +19,7 @@ const app: FastifyInstance = fastify({
         prefix: "/api",
     });
 
+    /*
     app.post("/session", async (req, res) => {
         let functionCall: IApiResponse = JSON.parse(
             await requestNewSessionCookie()
@@ -34,6 +35,7 @@ const app: FastifyInstance = fastify({
         //     JSON.stringify(functionCall)
         // );
     });
+    */
 
     (async (): Promise<void> => {
         try {
