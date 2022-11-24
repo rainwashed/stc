@@ -2,6 +2,7 @@ import { FastifyInstance, FastifyPluginOptions } from "fastify";
 import { apiRouteMiddleware } from "./constants";
 import requestDemographicData from "./demographic.api";
 import requestContactsData from "./contacts.api";
+import requestScheduleData from "./schedule.api";
 
 function apiRoute(
     fastify: FastifyInstance,
@@ -63,6 +64,28 @@ function apiRoute(
                     error: true,
                     message: String(error),
                     reason: "/contacts GET failed.",
+                })
+            );
+        }
+    });
+
+    fastify.get("/schedule", async (req, res) => {
+        try {
+            let call = await requestScheduleData(
+                req.headers["sessioncookie"] as string
+            );
+            res.code(200).send(
+                JSON.stringify({
+                    error: false,
+                    data: call,
+                })
+            );
+        } catch (error) {
+            res.code(500).send(
+                JSON.stringify({
+                    error: true,
+                    message: String(error),
+                    reason: "/schedule GET failed.",
                 })
             );
         }

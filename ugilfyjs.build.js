@@ -1,0 +1,77 @@
+const uglifyJs = require("uglify-js");
+const uglifyOpts = {
+    parse: {
+        bare_returns: true,
+        html5_comments: true,
+        module: true,
+        shebang: false,
+    },
+    compress: {
+        annotations: false,
+        arguments: true,
+        arrows: true,
+        assignments: true,
+        awaits: true,
+        booleans: true,
+        collapse_vars: true,
+        comparisons: true,
+        conditions: true,
+        dead_code: true,
+        default_values: true,
+        directives: true,
+        drop_console: true,
+        drop_debugger: true,
+        evaluate: true,
+        expression: false,
+        functions: true,
+        global_defs: {},
+        hoist_export: true,
+        hoist_funs: false,
+        hoist_props: true,
+        hoist_vars: false,
+        if_return: true,
+        imports: true,
+        inline: true,
+        join_vars: true,
+        keep_fargs: false,
+        keep_infinity: false,
+        loops: true,
+        merge_vars: true,
+        module: true,
+        negate_iife: true,
+        objects: true,
+        passes: 2,
+        properties: false,
+        pure_funcs: null,
+        pure_getters: "strict",
+        reduce_funcs: true,
+        reduce_vars: true,
+        rests: true,
+        sequences: true,
+        side_effects: true,
+        spreads: true,
+        strings: true,
+        switches: true,
+        templates: true,
+        top_retain: null,
+        toplevel: false,
+        typeofs: true,
+    },
+    mangle: {
+        // mangle options
+
+        properties: {
+            // mangle property options
+        },
+    },
+    output: {
+        comments: false,
+        preamble: `/* Minified with uglify-js @ ${Date.now()} */\n`,
+    },
+    sourceMap: {
+        // source map options
+    },
+    nameCache: null, // or specify a name cache object
+    toplevel: false,
+    warnings: true,
+};
