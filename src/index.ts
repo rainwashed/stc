@@ -52,5 +52,3 @@ const app: FastifyInstance = fastify({
         }
     })();
 })();
-
-// testing for LinkedIn + GitHub automation

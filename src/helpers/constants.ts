@@ -37,4 +37,8 @@ function apiRouteMiddleware(req: FastifyRequest, res: any, next: any) {
     }
 }
 
-export { defaultRequestHeaders, apiRouteMiddleware };
+function cheerioCheckExists(this: any, selector: string) {
+    return this?.find(selector).length > 0;
+}
+
+export { defaultRequestHeaders, apiRouteMiddleware, cheerioCheckExists };
