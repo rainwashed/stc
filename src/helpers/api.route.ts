@@ -7,6 +7,9 @@ import requestEnrollmentData from "./enrollment.api";
 import requestHealthData from "./health.api";
 import requestAttendanceData from "./attendance.api";
 import requestCafeteriaData from "./cafeteria.api";
+import requestActivitiesData from "./activities.api";
+import requestGPAData from "./gpa.api";
+import requestAssignmentsData from "./assignments.api";
 
 function apiRoute(
     fastify: FastifyInstance,
@@ -178,6 +181,72 @@ function apiRoute(
                     error: true,
                     message: String(error),
                     reason: "/cafeteria GET failed.",
+                })
+            );
+        }
+    });
+
+    fastify.get("/activities", async (req, res) => {
+        try {
+            let call = await requestActivitiesData(
+                req.headers["sessioncookie"] as string
+            );
+            res.code(200).send(
+                JSON.stringify({
+                    error: true,
+                    data: call,
+                })
+            );
+        } catch (error) {
+            res.code(500).send(
+                JSON.stringify({
+                    error: true,
+                    message: String(error),
+                    reason: "/activities GET failed.",
+                })
+            );
+        }
+    });
+
+    fastify.get("/gpa", async (req, res) => {
+        try {
+            let call = await requestGPAData(
+                req.headers["sessioncookie"] as string
+            );
+            res.code(200).send(
+                JSON.stringify({
+                    error: true,
+                    data: call,
+                })
+            );
+        } catch (error) {
+            res.code(500).send(
+                JSON.stringify({
+                    error: true,
+                    message: String(error),
+                    reason: "/gpa GET failed.",
+                })
+            );
+        }
+    });
+
+    fastify.get("/assignments", async (req, res) => {
+        try {
+            let call = await requestAssignmentsData(
+                req.headers["sessioncookie"] as string
+            );
+            res.code(200).send(
+                JSON.stringify({
+                    error: true,
+                    data: call,
+                })
+            );
+        } catch (error) {
+            res.code(500).send(
+                JSON.stringify({
+                    error: true,
+                    message: String(error),
+                    reason: "/assignments GET failed.",
                 })
             );
         }

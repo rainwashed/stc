@@ -1,0 +1,2 @@
+reverse-engineer the login system (it uses <form> and jQuery)
+reverse-engineer the print/detail functions (uses javascript: protocol URL)
