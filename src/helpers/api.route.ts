@@ -4,6 +4,8 @@ import requestDemographicData from "./demographic.api";
 import requestContactsData from "./contacts.api";
 import requestScheduleData from "./schedule.api";
 import requestEnrollmentData from "./enrollment.api";
+import requestHealthData from "./health.api";
+import requestAttendanceData from "./attendance.api";
 
 function apiRoute(
     fastify: FastifyInstance,
@@ -109,6 +111,50 @@ function apiRoute(
                     error: true,
                     message: String(error),
                     reason: "/enrollment GET failed.",
+                })
+            );
+        }
+    });
+
+    fastify.get("/health", async (req, res) => {
+        try {
+            let call = await requestHealthData(
+                req.headers["sessioncookie"] as string
+            );
+            res.code(200).send(
+                JSON.stringify({
+                    error: true,
+                    data: call,
+                })
+            );
+        } catch (error) {
+            res.code(500).send(
+                JSON.stringify({
+                    error: true,
+                    message: String(error),
+                    reason: "/health GET failed.",
+                })
+            );
+        }
+    });
+
+    fastify.get("/attendance", async (req, res) => {
+        try {
+            let call = await requestAttendanceData(
+                req.headers["sessioncookie"] as string
+            );
+            res.code(200).send(
+                JSON.stringify({
+                    error: true,
+                    data: call,
+                })
+            );
+        } catch (error) {
+            res.code(500).send(
+                JSON.stringify({
+                    error: true,
+                    message: String(error),
+                    reason: "/attendance GET failed.",
                 })
             );
         }
