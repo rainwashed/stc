@@ -10,6 +10,7 @@ import requestCafeteriaData from "./cafeteria.api";
 import requestActivitiesData from "./activities.api";
 import requestGPAData from "./gpa.api";
 import requestAssignmentsData from "./assignments.api";
+import requestPulseData from "./pulse.api";
 
 function apiRoute(
     fastify: FastifyInstance,
@@ -247,6 +248,28 @@ function apiRoute(
                     error: true,
                     message: String(error),
                     reason: "/assignments GET failed.",
+                })
+            );
+        }
+    });
+
+    fastify.get("/pulse", async (req, res) => {
+        try {
+            let call = await requestPulseData(
+                req.headers["sessioncookie"] as string
+            );
+            res.code(200).send(
+                JSON.stringify({
+                    error: true,
+                    data: call,
+                })
+            );
+        } catch (error) {
+            res.code(500).send(
+                JSON.stringify({
+                    error: true,
+                    message: String(error),
+                    reason: "/pulse GET failed.",
                 })
             );
         }

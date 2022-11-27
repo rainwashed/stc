@@ -5,8 +5,10 @@ import { defaultRequestHeaders, isNumeric } from "./constants";
 let fetchRoute =
     "https://studentconnect.bloomfield.org/studentportal/Home/LoadProfileData/Assignments";
 let labelFilteringCriteria = /(&nbsp;|"| |)/gm;
-let nameFilteringCriteria = /(&nbsp;|"| |)/gm;
+let nameFilteringCriteria = /(&nbsp;|"|\\n|\\t)/gm;
 let valueFilteringCriteria = /(&nbsp;|"|'|)/gm;
+
+// TODO: Make comments (currently false for everything)
 
 async function requestAssignmentsData(sessionToken: string) {
     return new Promise(async (resolve, reject) => {
@@ -36,30 +38,50 @@ async function requestAssignmentsData(sessionToken: string) {
                 };
                 // TODO: Fix name resolution to actually be readable (ex: Per\n\t\t\t\t\tPer: 1   MYP Honors Microeconomics 9 (56202)\n\t\t\t\t   MYP Honors Microeconomics 9 (56202)\n\t\t\t\t -> Per: 1 MYP Honors Microeconomics 9 (56202))
                 let courseName =
-                    $(table)
-                        .find("caption > label")
-                        .text()
-                        .replace(nameFilteringCriteria, "") +
+                    // $(table)
+                    //     .find("caption > label")
+                    //     .text()
+                    //     .replace(nameFilteringCriteria, "") +
                     $(table)
                         .find("caption")
                         .text()
-                        .replace(nameFilteringCriteria, "") +
-                    $(table)
-                        .find("caption > b")
-                        .text()
-                        .replace(nameFilteringCriteria, "");
+                        .replace(/\\n|\\t/, "");
+                // $(table)
+                //     .find("caption > b")
+                //     .text()
+                //     .replace(nameFilteringCriteria, "");
                 let courseSession = $(table)
                     .find("thead > tr:first-child > td:first-child > b")
                     .text()
                     .replace(nameFilteringCriteria, "");
 
-                // TODO: Work on getting the course grade
-                let courseGrade: any = $(table)
-                    .find("thead > tr:first-child > td:first-child")
-                    .children()
-                    .each((_: number, e) => {
-                        console.log($(e).text());
-                    });
+                // implementation suggested by ggorlen @ https://stackoverflow.com/questions/74587648/how-to-access-the-text-of-an-html-element-with-cheerio?noredirect=1#comment131658665_74587648
+                let _courseGrade: string[] = $(
+                    [
+                        ...$(table)
+                            .find("thead > tr:first-child > td:first-child")
+                            .contents(),
+                    ].find((e) => e.type === "text" && e.nodeValue.trim())
+                )
+                    .toString()
+                    .split(" ")
+                    .slice(0, 3);
+                let courseGrade: {
+                    letter: string;
+                    percentage: string | number;
+                } = {
+                    letter: String(_courseGrade[0])
+                        .replace(nameFilteringCriteria, "")
+                        .trim(),
+                    percentage: String(_courseGrade[2])
+                        .trim()
+                        .replace(/\(|\)/, "")
+                        .slice(0, -2),
+                };
+
+                courseGrade.percentage = parseFloat(
+                    courseGrade.percentage as string
+                );
 
                 let courseProgressReport = $(table)
                     .find("thead > tr:first-child > td:first-child > a")
@@ -88,16 +110,9 @@ async function requestAssignmentsData(sessionToken: string) {
                     })
                     .toArray();
 
-                /* console.log(
-                    courseDetail,
-                    courseProgressReport,
-                    teacherDetail,
-                    courseLabels
-                ); */
-
                 _data.name = courseName;
                 _data.session = courseSession;
-                // _data.grade = courseGrade;
+                _data.grade = courseGrade;
                 _data.progress_report = courseProgressReport;
                 _data.teacher = teacherDetail;
 
