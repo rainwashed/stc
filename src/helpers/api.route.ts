@@ -6,6 +6,7 @@ import requestScheduleData from "./schedule.api";
 import requestEnrollmentData from "./enrollment.api";
 import requestHealthData from "./health.api";
 import requestAttendanceData from "./attendance.api";
+import requestCafeteriaData from "./cafeteria.api";
 
 function apiRoute(
     fastify: FastifyInstance,
@@ -155,6 +156,28 @@ function apiRoute(
                     error: true,
                     message: String(error),
                     reason: "/attendance GET failed.",
+                })
+            );
+        }
+    });
+
+    fastify.get("/cafeteria", async (req, res) => {
+        try {
+            let call = await requestCafeteriaData(
+                req.headers["sessioncookie"] as string
+            );
+            res.code(200).send(
+                JSON.stringify({
+                    error: true,
+                    data: call,
+                })
+            );
+        } catch (error) {
+            res.code(500).send(
+                JSON.stringify({
+                    error: true,
+                    message: String(error),
+                    reason: "/cafeteria GET failed.",
                 })
             );
         }

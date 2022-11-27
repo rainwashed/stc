@@ -41,4 +41,13 @@ function cheerioCheckExists(this: any, selector: string) {
     return this?.find(selector).length > 0;
 }
 
-export { defaultRequestHeaders, apiRouteMiddleware, cheerioCheckExists };
+function isNumeric(value: any) {
+    return /^-?\d+$/.test(value);
+}
+
+export {
+    defaultRequestHeaders,
+    apiRouteMiddleware,
+    cheerioCheckExists,
+    isNumeric,
+};

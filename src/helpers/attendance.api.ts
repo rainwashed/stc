@@ -1,6 +1,6 @@
 import cheerio from "cheerio";
 import fetch from "axios";
-import { defaultRequestHeaders } from "./constants";
+import { defaultRequestHeaders, isNumeric } from "./constants";
 
 let fetchRoute =
     "https://studentconnect.bloomfield.org/studentportal/Home/LoadProfileData/Attendance";
@@ -15,10 +15,6 @@ interface IData {
     summaryByReason: ISummaryByReason;
     summaryByClass: [];
     detail: [];
-}
-
-function isNumeric(value: any) {
-    return /^-?\d+$/.test(value);
 }
 
 async function requestAttendanceData(sessionToken: string) {
