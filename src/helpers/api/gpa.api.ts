@@ -1,13 +1,13 @@
 import cheerio from "cheerio";
 import fetch from "axios";
-import { defaultRequestHeaders } from "./constants";
+import { defaultRequestHeaders } from "../constants";
 
 let fetchRoute =
-    "https://studentconnect.bloomfield.org/studentportal/Home/LoadProfileData/Activities";
+    "https://studentconnect.bloomfield.org/studentportal/Home/LoadProfileData/GPA";
 let labelFilteringCriteria = /( )/gm;
 let valueFilteringCriteria = /(&nbsp;|"|'|)/gm;
 
-async function requestActivitiesData(sessionToken: string) {
+async function requestGPAData(sessionToken: string) {
     return new Promise(async (resolve, reject) => {
         if (sessionToken.trim() === "") reject("No session token provided.");
         try {
@@ -19,18 +19,20 @@ async function requestActivitiesData(sessionToken: string) {
             });
 
             let $ = cheerio.load(String(req.data));
-            let activitiesTable = $("#SP-Activities > tbody");
-            let activitiesTableLabels: string[] = [
-                "begin_date",
-                "end_date",
-                "type",
-                "activity",
-                "grade_level",
-                "service_time",
+            let GPATable = $("#SP-GPA > tbody");
+            let GPALabels: string[] = [
+                "grade",
+                "year",
+                "gpa_type",
+                "term",
+                "term_credits",
+                "term_gpa",
+                "cumulative_credits",
+                "cumulative_gpa",
             ];
             let data: {}[] | null = [];
 
-            activitiesTable.children().each((_: number, row) => {
+            GPATable.children().each((_: number, row) => {
                 if (
                     $(row).find("td > label").length > 0 &&
                     $(row).find("td > label").text().toLowerCase() ===
@@ -48,7 +50,7 @@ async function requestActivitiesData(sessionToken: string) {
                                 .trim()
                                 .replace(valueFilteringCriteria, "");
 
-                            _data[activitiesTableLabels[__]] = _value;
+                            _data[GPALabels[__]] = _value;
                         });
 
                     data?.push(_data);
@@ -57,7 +59,7 @@ async function requestActivitiesData(sessionToken: string) {
 
             resolve(data);
 
-            // TODO: Work on the activities api (my account doesn't have any data)
+            // TODO: Work on the GPA api (my account doesn't have any data)
         } catch (error: any) {
             if (error.response) {
                 reject(
@@ -74,4 +76,4 @@ async function requestActivitiesData(sessionToken: string) {
     });
 }
 
-export default requestActivitiesData;
+export default requestGPAData;

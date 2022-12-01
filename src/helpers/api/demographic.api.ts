@@ -1,6 +1,6 @@
 import cheerio from "cheerio";
 import fetch from "axios";
-import { defaultRequestHeaders } from "./constants";
+import { defaultRequestHeaders } from "../constants";
 
 let labelFilteringCriteria = /(:|#| )/gm;
 let fetchRoute =

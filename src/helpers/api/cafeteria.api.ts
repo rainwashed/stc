@@ -1,6 +1,6 @@
 import cheerio from "cheerio";
 import fetch from "axios";
-import { defaultRequestHeaders, isNumeric } from "./constants";
+import { defaultRequestHeaders, isNumeric } from "../constants";
 
 let fetchRoute =
     "https://studentconnect.bloomfield.org/studentportal/Home/LoadProfileData/Cafeteria";

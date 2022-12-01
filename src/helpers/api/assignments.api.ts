@@ -1,6 +1,6 @@
 import cheerio from "cheerio";
 import fetch from "axios";
-import { defaultRequestHeaders, isNumeric } from "./constants";
+import { defaultRequestHeaders, isNumeric } from "../constants";
 
 let fetchRoute =
     "https://studentconnect.bloomfield.org/studentportal/Home/LoadProfileData/Assignments";
@@ -86,6 +86,12 @@ async function requestAssignmentsData(sessionToken: string) {
                 let courseProgressReport = $(table)
                     .find("thead > tr:first-child > td:first-child > a")
                     .attr("href");
+
+                courseProgressReport = `https://studentconnect.bloomfield.org/studentportal/Home/AssignmentProgRpt/${courseProgressReport?.substring(
+                    24,
+                    courseProgressReport.length - 2
+                )}`;
+
                 let teacherDetail = {
                     name: $(table)
                         .find("thead > tr:first-child > td:last-child > a")
@@ -127,11 +133,13 @@ async function requestAssignmentsData(sessionToken: string) {
                     $(row)
                         .children()
                         .each((index: number, value) => {
-                            // handle print
+                            // handle print details
                             if ($(value).find("a").length > 0) {
-                                __data[courseLabels[index]] = $(value)
-                                    .find("a")
-                                    .attr("href");
+                                let url = $(value).find("a").attr("href");
+                                __data[courseLabels[index]] = url;
+
+                                console.log(url);
+                                // console.log(url?.substring(19));
                             } else if (index === childrenAmount - 1) {
                                 // handle not graded
                                 __data[courseLabels[index]] =
