@@ -42,10 +42,7 @@ async function requestAssignmentsData(sessionToken: string) {
                     //     .find("caption > label")
                     //     .text()
                     //     .replace(nameFilteringCriteria, "") +
-                    $(table)
-                        .find("caption")
-                        .text()
-                        .replace(/\\n|\\t/, "");
+                    $(table).find("caption").text().replace(/\n|\t/g, "");
                 // $(table)
                 //     .find("caption > b")
                 //     .text()

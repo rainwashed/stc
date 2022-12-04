@@ -9,6 +9,9 @@ import activities from "./activities.api";
 import gpa from "./gpa.api";
 import assignments from "./assignments.api";
 import pulse from "./pulse.api";
+import standards from "./standards.api";
+import marks from "./marks.api";
+import report_cards from "./report_cards.api";
 
 export const routes = {
     demographic,
@@ -22,4 +25,7 @@ export const routes = {
     gpa,
     assignments,
     pulse,
+    standards,
+    marks,
+    report_cards,
 };
