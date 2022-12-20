@@ -1,0 +1,23 @@
+* [⤣](/ "stc - Root")
+* [API](/api/README.md "stc - API")
+* [Activities](/api/activites.md "stc - Activities API")
+* [Assignments](/api/assignments.md "stc - Assignments API")
+* [Attendance](/api/attendance.md "stc - Attendance API")
+* [Cafeteria](/api/cafeteria.md "stc - Cafeteria API")
+* [Contacts](/api/contacts.md "stc - Contacts API")
+* [Demographic](/api/demographic.md "stc - Demographic API")
+* [Enrollment](/api/enrollment.md "stc - Enrollment API")
+* [GPA](/api/gpa.md "stc - GPA API")
+* [Health](/api/health.md "stc - Health API")
+* [Marks](/api/marks.md "stc - Marks API")
+* [Pulse](/api/pulse.md "stc - Pulse API")
+* [Report Card](/api/report_card.md "stc - Report Card API")
+* [Schedule](/api/schedule.md "stc - Schedule API")
+* [Standards](/api/standards.md "stc - Standards API")
+* [Transcript](/api/transcript.md "stc - Transcript API")
+
+---
+
+* [News](/api/news.md "stc - News API")
+* [District Notices](/api/district_notices.md "stc - District Notices API")
+* [Advisory Schedule](/api/advisory_schedule.md "stc - Advisory Schedule API")

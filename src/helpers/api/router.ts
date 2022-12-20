@@ -12,6 +12,15 @@ import pulse from "./pulse.api";
 import standards from "./standards.api";
 import marks from "./marks.api";
 import report_cards from "./report_cards.api";
+import transcript from "./transcript.api";
+
+/*
+    - News
+    - District Notices
+    - Advisory Schedule
+
+    All missing but not yet necessary
+*/
 
 export const routes = {
     demographic,
