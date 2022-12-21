@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>StudentConnecT</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="description" content="Description" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"
+        />
+        <link
+            rel="shortcut icon"
+            href="./assets/favicon.png"
+            type="image/png"
+        />
+        <link
+            rel="stylesheet"
+            href="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css"
+        />
+
+        <!-- HTML Meta Tags -->
+        <title>StudentConnecT API</title>
+        <meta
+            name="description"
+            content="REST Abstraction API over StudentConnect."
+        />
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:url" content="https://rainwashed.tk/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="StudentConnecT API" />
+        <meta
+            property="og:description"
+            content="REST Abstraction API over StudentConnect."
+        />
+        <meta
+            property="og:image"
+            content="https://i.ibb.co/k4nzFvg/Frame-1.png"
+        />
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="rainwashed.tk" />
+        <meta property="twitter:url" content="https://rainwashed.tk/" />
+        <meta name="twitter:title" content="StudentConnecT API" />
+        <meta
+            name="twitter:description"
+            content="REST Abstraction API over StudentConnect."
+        />
+        <meta
+            name="twitter:image"
+            content="https://i.ibb.co/k4nzFvg/Frame-1.png"
+        />
+
+        <!-- Meta Tags Generated via https://www.opengraph.xyz -->
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
+            window.$docsify = {
+                name: "",
+                repo: "rainwashed/stc",
+                themeColor: "#6c5ce7",
+                loadSidebar: true,
+                notFoundPage: "404.md",
+                darkMode: {
+                    dark: {
+                        background: "#141414",
+                        toggleBtnBg: "#a29bfe",
+                        textColor: "#dfe6e9",
+                    },
+                    light: {
+                        background: "white",
+                        toggleBtnBg: "var(--theme-color)",
+                        textColor: "#2d3436",
+                    },
+                },
+                logo: "/assets/stc_banner.svg",
+            };
+            if (typeof navigator.serviceWorker !== "undefined") {
+                navigator.serviceWorker
+                    .register("service-worker.js")
+                    .then((e) => {
+                        console.log(
+                            "Successfully registered service worker! You're good to go offline."
+                        );
+                    })
+                    .catch((error) => {
+                        console.warn(
+                            "Unable to register service worker. Offline mode will not work."
+                        );
+                        console.warn(error);
+                    });
+            }
+        </script>
+        <!-- Docsify v4 -->
+        <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+        <script src="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/index.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+    </body>
+</html>

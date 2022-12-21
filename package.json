@@ -6,7 +6,8 @@
     "scripts": {
         "watch": "tsc --project tsconfig.json --watch",
         "build": "tsc --project tsconfig.json --outDir ./build && node uglifyjs.build.js",
-        "dev": "tsc --project tsconfig.json --watch & nodemon src/build/index.js"
+        "dev": "tsc --project tsconfig.json --watch & nodemon src/build/index.js",
+        "serve": "docsify serve docs/"
     },
     "author": "",
     "license": "ISC",

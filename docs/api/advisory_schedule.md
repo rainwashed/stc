@@ -1,6 +1,7 @@
-### ! Non-Implemented
+# Advisory Schedule
+## ``GET /api/*unknown*``
 
-# Advisory_Schedule
+🛑 This route has not been implemented into stc yet, therefore there are no entires.
 
 ### Description
 
