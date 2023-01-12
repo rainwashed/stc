@@ -5,6 +5,7 @@ import {
 } from "fastify";
 import { apiRouteMiddleware } from "./constants";
 import { routes } from "./api/router";
+import {codes} from "../settings.json";
 
 function apiRoute(
     fastify: FastifyInstance,
@@ -14,7 +15,7 @@ function apiRoute(
     fastify.use(apiRouteMiddleware);
 
     fastify.get("/", async (req, res) => {
-        res.code(200).send(
+        res.code(codes.sucess).send(
             JSON.stringify({
                 error: false,
                 data: Object.keys(routes).map((val: string) => `/api/${val}`),
@@ -32,7 +33,7 @@ function apiRoute(
             .trim();
 
         if (!(route in routes)) {
-            res.code(404).send(
+            res.code(codes.notFound).send(
                 JSON.stringify({
                     error: true,
                     message: "That route does not exist.",
@@ -48,14 +49,15 @@ function apiRoute(
                 req.headers?.["sessioncookie"] as string
             );
 
-            res.code(200).send(
+            res.code(codes.sucess).send(
                 JSON.stringify({
                     error: false,
                     data: call,
                 })
             );
         } catch (error) {
-            res.code(500).send(
+            // 203 means that studentconnect could not return data; this is to bypass axios error checking in the xhr.js file.
+            res.code(codes.error).send(
                 JSON.stringify({
                     error: true,
                     message: String(error),

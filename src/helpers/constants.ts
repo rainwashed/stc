@@ -1,4 +1,5 @@
 import { FastifyRequest } from "fastify";
+import {codes} from "../settings.json";
 
 const defaultRequestHeaders = {
     accept: "text/html, */*; q=0.01",
@@ -20,11 +21,12 @@ const defaultRequestHeaders = {
 
 function apiRouteMiddleware(req: FastifyRequest, res: any, next: any) {
     res.setHeader("Content-Type", "application/json");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     if (
         typeof req.headers["sessioncookie"] === "undefined" ||
         req?.headers["sessioncookie"] === null
     ) {
-        res.statusCode = 403;
+        res.statusCode = codes.notAuth;
         res.end(
             JSON.stringify({
                 error: true,
