@@ -3,12 +3,12 @@
     "loginRoute": "https://studentconnect.bloomfield.org/studentportal/Home/Login",
     "codes": {
         "sucess": 200,
-        "error": 203,
+        "error": 400,
         "notFound": 404,
         "notAuth": 403
     },
     "server": {
         "port": 3000,
-        "host": "192.168.1.4"
+        "host": "127.0.0.1"
     }
 }
