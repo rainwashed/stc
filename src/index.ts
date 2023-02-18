@@ -4,7 +4,7 @@ import cors from "@fastify/cors";
 import { AddressInfo } from "net";
 
 import apiRoute from "./helpers/api.route";
-import {server} from "./settings.json";
+import { server } from "./settings.json";
 
 const app: FastifyInstance = fastify({
     logger: true,
@@ -13,8 +13,8 @@ const app: FastifyInstance = fastify({
 (async () => {
     await app.register(middle);
     await app.register(cors, {
-        origin: "*"
-    })
+        origin: "*",
+    });
     await app.register(apiRoute, {
         prefix: "/api",
     });
@@ -23,12 +23,14 @@ const app: FastifyInstance = fastify({
         try {
             await app.listen({
                 port: server.port || 3000,
-		        host: server.host || "::1",
+                host: server.host || "::1",
             });
             const address: string | AddressInfo | null = app.server.address();
             const port = typeof address === "string" ? address : address?.port;
 
-            console.log(`Access @ ${server.host || "::1"}:${server.port || 3000}`);
+            console.log(
+                `Access @ ${server.host || "::1"}:${server.port || 3000}`
+            );
         } catch (error) {
             app.log.error(error);
             process.exit(1);

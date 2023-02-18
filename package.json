@@ -4,10 +4,11 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "watch": "tsc --project tsconfig.json --watch",
+        "watch": "tsc --project tsconfig.json --watch --outDir ./build",
         "build": "tsc --project tsconfig.json --outDir ./build",
         "dev": "tsc --project tsconfig.json --watch & nodemon src/build/index.js",
-        "serve": "docsify serve docs/"
+        "serve": "docsify serve docs/",
+        "start": "node build/index.js"
     },
     "author": "",
     "license": "ISC",
